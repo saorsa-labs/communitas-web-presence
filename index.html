@@ -259,7 +259,7 @@
 
         /* ===== INSTALL ===== */
         .install-section { text-align: center; }
-        .install-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+        .install-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 2rem; max-width: 900px; margin-left: auto; margin-right: auto; }
         .install-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; text-align: left; transition: all 0.3s; }
         .install-card:hover { border-color: var(--border-glow); background: var(--bg-card-hover); }
         .install-card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
@@ -267,6 +267,11 @@
         .platform-tag { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.8rem; }
         .tag-app { background: rgba(68, 136, 255, 0.1); color: var(--accent-blue); border: 1px solid rgba(68, 136, 255, 0.2); }
         .tag-dev { background: rgba(153, 102, 255, 0.1); color: var(--accent-purple); border: 1px solid rgba(153, 102, 255, 0.2); }
+        .tag-windows { background: rgba(0, 180, 255, 0.1); color: #00b4ff; border: 1px solid rgba(0, 180, 255, 0.2); }
+        .tag-linux { background: rgba(255, 170, 68, 0.1); color: #ffaa44; border: 1px solid rgba(255, 170, 68, 0.2); }
+        .install-card.detected { border-color: var(--accent-blue); box-shadow: 0 0 20px rgba(68, 136, 255, 0.15); }
+        .install-card .detected-badge { display: none; font-size: 0.75rem; color: var(--accent-blue); margin-top: 0.5rem; }
+        .install-card.detected .detected-badge { display: block; }
 
         .network-callout { max-width: 700px; margin: 3rem auto 0; padding: 1.5rem 2rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; display: flex; align-items: center; gap: 1rem; text-align: left; }
         .network-callout p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; }
@@ -526,22 +531,43 @@
     <section id="install" class="install-section fade-in">
         <div class="section-label">Download</div>
         <h2 class="section-title">Get Communitas</h2>
-        <p class="section-desc-center">Available now for macOS. Cross-platform support coming soon.</p>
+        <p class="section-desc-center" id="install-subtitle">Board, Chat, Docs, Canvas, Drive, and Calls — all encrypted, all local.</p>
 
         <div class="install-options">
-            <div class="install-card">
+            <div class="install-card" id="dl-macos" data-platform="macos">
                 <div class="platform-tag tag-app">macOS</div>
-                <h3>Communitas</h3>
-                <p class="desc">The full collaboration platform. Board, Chat, Docs, Canvas, Drive, and Calls.</p>
-                <a href="https://github.com/saorsa-labs/communitas/releases/latest" class="btn-primary" style="width:100%;justify-content:center;font-size:0.9rem;padding:0.7rem;">
+                <h3>Communitas for Mac</h3>
+                <p class="desc">Universal binary — Apple Silicon and Intel.</p>
+                <a href="https://github.com/saorsa-labs/communitas/releases/latest/download/Communitas.dmg" class="btn-primary" style="width:100%;justify-content:center;font-size:0.9rem;padding:0.7rem;">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-                    Download Latest
+                    Download for macOS
                 </a>
+                <div class="detected-badge">Detected — you're on macOS</div>
             </div>
-            <div class="install-card">
+            <div class="install-card" id="dl-windows" data-platform="windows">
+                <div class="platform-tag tag-windows">Windows</div>
+                <h3>Communitas for Windows</h3>
+                <p class="desc">Windows 10 and later.</p>
+                <a href="https://github.com/saorsa-labs/communitas/releases/latest/download/Communitas-Setup.exe" class="btn-primary" style="width:100%;justify-content:center;font-size:0.9rem;padding:0.7rem;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                    Download for Windows
+                </a>
+                <div class="detected-badge">Detected — you're on Windows</div>
+            </div>
+            <div class="install-card" id="dl-linux" data-platform="linux">
+                <div class="platform-tag tag-linux">Linux</div>
+                <h3>Communitas for Linux</h3>
+                <p class="desc">AppImage — works on any distro.</p>
+                <a href="https://github.com/saorsa-labs/communitas/releases/latest/download/Communitas.AppImage" class="btn-primary" style="width:100%;justify-content:center;font-size:0.9rem;padding:0.7rem;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                    Download for Linux
+                </a>
+                <div class="detected-badge">Detected — you're on Linux</div>
+            </div>
+            <div class="install-card" id="dl-source">
                 <div class="platform-tag tag-dev">Source</div>
                 <h3>Build from source</h3>
-                <p class="desc">Contributions welcome. Communitas is open source under AGPL-3.0.</p>
+                <p class="desc">Open source under AGPL-3.0.</p>
                 <a href="https://github.com/saorsa-labs/communitas" class="btn-secondary" style="width:100%;justify-content:center;font-size:0.9rem;padding:0.7rem;">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
                     View on GitHub
@@ -675,6 +701,24 @@
             es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
         }, { threshold: 0.1 });
         document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+        // ===== OS AUTO-DETECTION =====
+        (function() {
+            const ua = navigator.userAgent || navigator.platform || '';
+            let os = 'unknown';
+            if (/Mac/i.test(ua)) os = 'macos';
+            else if (/Win/i.test(ua)) os = 'windows';
+            else if (/Linux/i.test(ua) && !/Android/i.test(ua)) os = 'linux';
+
+            const cards = document.querySelectorAll('.install-card[data-platform]');
+            cards.forEach(card => {
+                if (card.dataset.platform === os) {
+                    card.classList.add('detected');
+                    // Move detected card to first position
+                    card.parentNode.insertBefore(card, card.parentNode.firstChild);
+                }
+            });
+        })();
     </script>
 </body>
 </html>
