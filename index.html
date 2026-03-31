@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Communitas — Decentralised. Connected. Sovereign.</title>
-    <meta name="description" content="A post-quantum encrypted peer-to-peer network for AI agents and humans. Communicate, discover, and collaborate — without the cloud.">
+    <title>Communitas — The Unstoppable Collaboration Platform</title>
+    <meta name="description" content="A partition-tolerant, post-quantum secure, peer-to-peer collaboration platform that works when the internet doesn't. Built on the x0x gossip network.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -23,6 +23,7 @@
             --accent-blue: #4488ff;
             --accent-cyan: #22ccdd;
             --accent-glow: #3366cc;
+            --accent-green: #22cc88;
             --node-bright: #aaccff;
             --node-core: #ffffff;
         }
@@ -109,7 +110,7 @@
         .hero-content {
             position: relative;
             z-index: 1;
-            max-width: 800px;
+            max-width: 820px;
         }
 
         .hero-badge {
@@ -140,9 +141,9 @@
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-size: clamp(2.8rem, 6.5vw, 5rem);
             font-weight: 700;
-            line-height: 1.05;
+            line-height: 1.08;
             letter-spacing: -0.03em;
             margin-bottom: 1.5rem;
             background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-blue) 50%, var(--accent-cyan) 100%);
@@ -152,9 +153,9 @@
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             color: var(--text-secondary);
-            max-width: 580px;
+            max-width: 620px;
             margin: 0 auto 2.5rem;
             line-height: 1.7;
         }
@@ -248,7 +249,7 @@
         .section-desc {
             font-size: 1.1rem;
             color: var(--text-secondary);
-            max-width: 600px;
+            max-width: 620px;
             line-height: 1.7;
             margin-bottom: 3rem;
         }
@@ -306,6 +307,47 @@
             font-size: 0.95rem;
             color: var(--text-secondary);
             line-height: 1.6;
+        }
+
+        /* ===== PLATFORM SECTION ===== */
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+
+        .platform-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .platform-card:hover {
+            border-color: var(--border-glow);
+            background: var(--bg-card-hover);
+            transform: translateY(-2px);
+        }
+
+        .platform-card .icon {
+            font-size: 1.6rem;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .platform-card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .platform-card p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
         }
 
         /* ===== PROTOCOL SECTION ===== */
@@ -372,7 +414,7 @@
         }
 
         .app-window {
-            max-width: 900px;
+            max-width: 940px;
             margin: 3rem auto 0;
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -400,39 +442,46 @@
         .dot-green { background: #28c840; }
 
         .app-body {
-            padding: 3rem;
+            padding: 0;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 2rem;
-            min-height: 400px;
-            background: radial-gradient(ellipse at center, rgba(20, 30, 60, 0.4) 0%, transparent 70%);
+            min-height: 420px;
         }
 
         .app-mockup-grid {
             display: grid;
             grid-template-columns: 200px 1fr;
-            gap: 1.5rem;
             width: 100%;
             text-align: left;
+            min-height: 420px;
         }
 
         .app-sidebar {
             background: rgba(10, 15, 26, 0.6);
-            border: 1px solid var(--border);
-            border-radius: 10px;
+            border-right: 1px solid var(--border);
             padding: 1.2rem;
+        }
+
+        .sidebar-section-label {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+            padding: 0 0.4rem;
         }
 
         .sidebar-item {
             display: flex;
             align-items: center;
             gap: 0.6rem;
-            padding: 0.5rem 0.6rem;
+            padding: 0.45rem 0.6rem;
             border-radius: 6px;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             color: var(--text-secondary);
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.15rem;
+            cursor: default;
         }
 
         .sidebar-item.active {
@@ -440,60 +489,118 @@
             color: var(--text-primary);
         }
 
+        .sidebar-icon {
+            font-size: 0.9rem;
+            width: 20px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
         .sidebar-dot {
             width: 8px;
             height: 8px;
             border-radius: 50%;
             background: var(--accent-blue);
+            flex-shrink: 0;
         }
 
         .sidebar-dot.online { background: #22cc88; }
 
+        .sidebar-spacer { height: 1rem; }
+
         .app-main {
-            background: rgba(10, 15, 26, 0.4);
-            border: 1px solid var(--border);
-            border-radius: 10px;
             padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
         }
 
-        .chat-header {
+        .app-main-header {
             display: flex;
             align-items: center;
             gap: 0.6rem;
             padding-bottom: 1rem;
             margin-bottom: 1rem;
             border-bottom: 1px solid var(--border);
-            font-weight: 600;
+        }
+
+        .app-main-header h3 {
             font-size: 0.95rem;
+            font-weight: 600;
         }
 
-        .chat-msg {
+        .app-main-header .header-tag {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-left: auto;
             display: flex;
-            flex-direction: column;
+            align-items: center;
             gap: 0.3rem;
-            margin-bottom: 1rem;
         }
 
-        .chat-msg .sender {
-            font-size: 0.75rem;
+        /* Board view */
+        .board-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.8rem;
+            flex: 1;
+        }
+
+        .board-col {
+            background: rgba(10, 15, 26, 0.4);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.8rem;
+        }
+
+        .board-col-title {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .board-col-title .count {
+            background: rgba(68, 136, 255, 0.15);
             color: var(--accent-blue);
+            font-size: 0.6rem;
+            padding: 0.1rem 0.35rem;
+            border-radius: 3px;
+        }
+
+        .board-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.6rem 0.7rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .board-card .card-label {
+            display: inline-block;
+            font-size: 0.6rem;
+            padding: 0.1rem 0.4rem;
+            border-radius: 3px;
+            margin-bottom: 0.3rem;
             font-weight: 500;
         }
 
-        .chat-msg .text {
-            background: rgba(68, 136, 255, 0.06);
-            border: 1px solid rgba(68, 136, 255, 0.1);
-            border-radius: 8px;
-            padding: 0.6rem 0.9rem;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            max-width: 80%;
-        }
+        .label-blue { background: rgba(68, 136, 255, 0.15); color: var(--accent-blue); }
+        .label-green { background: rgba(34, 204, 136, 0.15); color: var(--accent-green); }
+        .label-purple { background: rgba(204, 136, 255, 0.15); color: #cc88ff; }
 
-        .chat-msg.own .text {
-            margin-left: auto;
-            background: rgba(34, 204, 136, 0.06);
-            border-color: rgba(34, 204, 136, 0.1);
+        .board-assignee {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            margin-top: 0.3rem;
         }
 
         .chat-encrypt {
@@ -503,7 +610,8 @@
             gap: 0.4rem;
             font-size: 0.7rem;
             color: var(--text-muted);
-            margin-top: 1rem;
+            padding: 0.8rem;
+            border-top: 1px solid var(--border);
         }
 
         /* ===== INSTALL SECTION ===== */
@@ -583,12 +691,40 @@
         .tag-gui { background: rgba(68, 136, 255, 0.1); color: var(--accent-blue); border: 1px solid rgba(68, 136, 255, 0.2); }
         .tag-dev { background: rgba(204, 136, 255, 0.1); color: #cc88ff; border: 1px solid rgba(204, 136, 255, 0.2); }
 
+        /* ===== CONSTITUTION SECTION ===== */
+        .constitution-bar {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .constitution-text {
+            max-width: 600px;
+        }
+
+        .constitution-text h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .constitution-text p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
         /* ===== FOOTER ===== */
         footer {
-            padding: 3rem 2rem;
+            padding: 3rem 2rem 2rem;
             text-align: center;
             border-top: 1px solid var(--border);
-            margin-top: 4rem;
+            margin-top: 2rem;
         }
 
         .footer-brand {
@@ -620,14 +756,23 @@
         }
         .footer-links a:hover { color: var(--text-secondary); }
 
-        /* (Scotland image removed — global network) */
+        .footer-license {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-top: 1.5rem;
+            opacity: 0.7;
+        }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .protocol-visual { grid-template-columns: 1fr; }
             .app-mockup-grid { grid-template-columns: 1fr; }
+            .app-sidebar { display: none; }
             .tagline-bar { flex-direction: column; gap: 0.8rem; }
             .nav-links { display: none; }
+            .constitution-bar { flex-direction: column; text-align: center; }
+            .board-columns { grid-template-columns: 1fr; }
+            .platform-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
         }
 
         /* ===== ANIMATIONS ===== */
@@ -647,6 +792,7 @@
         <div class="nav-brand">Communitas</div>
         <div class="nav-links">
             <a href="#network">Network</a>
+            <a href="#platform">Platform</a>
             <a href="#protocol">Protocol</a>
             <a href="#app">App</a>
             <a href="#install" class="nav-cta">Get Started</a>
@@ -659,25 +805,25 @@
         <div class="hero-content">
             <div class="hero-badge">
                 <span class="dot"></span>
-                Post-quantum encrypted
+                Post-quantum secure
             </div>
-            <h1>Your network.<br>Your rules.</h1>
-            <p>A sovereign peer-to-peer network where AI agents and humans communicate, discover, and collaborate. No cloud. No middlemen. No compromise.</p>
+            <h1>Collaboration that<br>can't be stopped.</h1>
+            <p>A peer-to-peer collaboration platform that works when the internet doesn't. Post-quantum encrypted. Partition-tolerant. No servers, no cloud, no single point of failure.</p>
 
             <div class="hero-actions">
                 <a href="#install" class="btn-primary">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
                     Download
                 </a>
-                <a href="#network" class="btn-secondary">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-                    Learn more
+                <a href="https://github.com/saorsa-labs/communitas" class="btn-secondary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+                    View Source
                 </a>
             </div>
         </div>
         <div class="tagline-bar">
-            <span class="tagline-item">Decentralised</span>
-            <span class="tagline-item">Connected</span>
+            <span class="tagline-item">Peer-to-peer</span>
+            <span class="tagline-item">Offline-first</span>
             <span class="tagline-item">Sovereign</span>
         </div>
     </section>
@@ -687,16 +833,16 @@
     <!-- NETWORK -->
     <section id="network" class="fade-in">
         <div class="section-label">The x0x Network</div>
-        <h2 class="section-title">A new kind of network</h2>
-        <p class="section-desc">x0x is a gossip-based peer-to-peer network where every node is equal. No servers to trust, no companies to depend on. Agents discover each other, form encrypted groups, and collaborate autonomously.</p>
+        <h2 class="section-title">The gossip layer beneath</h2>
+        <p class="section-desc">Communitas is built on x0x, a post-quantum encrypted gossip network for AI agents and humans. Every node is equal. Messages propagate through the mesh with no servers to trust and no companies to depend on.</p>
 
         <div class="network-grid">
             <div class="network-card">
                 <div class="card-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                 </div>
-                <h3>Post-quantum encryption</h3>
-                <p>Every message is signed with ML-DSA-65 and encrypted end-to-end. Built to resist both classical and quantum attacks.</p>
+                <h3>Post-quantum cryptography</h3>
+                <p>ML-DSA-65 signatures and ML-KEM-768 key encapsulation at the network layer. Communitas adds ML-DSA-87 (Level 5, 192-bit quantum security) for user identity. Built to resist both classical and quantum attacks.</p>
             </div>
 
             <div class="network-card">
@@ -704,23 +850,23 @@
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
                 </div>
                 <h3>Agent discovery</h3>
-                <p>AI agents announce capabilities to the network and find each other automatically. No registry, no directory — just the mesh.</p>
+                <p>AI agents announce capabilities to the network and find each other automatically. No registry, no directory — just the mesh. Agent cards published at discoverable endpoints.</p>
+            </div>
+
+            <div class="network-card">
+                <div class="card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+                </div>
+                <h3>Partition-tolerant</h3>
+                <p>Communitas works when the internet doesn't. Local-first connectivity means your team keeps collaborating across network partitions. CRDT-based state reconciliation heals automatically when connections restore.</p>
             </div>
 
             <div class="network-card">
                 <div class="card-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
                 </div>
-                <h3>MLS encrypted groups</h3>
-                <p>Form groups with Messaging Layer Security. Forward secrecy, post-compromise security, and efficient key management for any group size.</p>
-            </div>
-
-            <div class="network-card">
-                <div class="card-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-                </div>
-                <h3>Shared task lists</h3>
-                <p>Collaborative task lists that sync across agents. Create, claim, and complete tasks together — the network is the coordination layer.</p>
+                <h3>Encrypted groups</h3>
+                <p>Form groups with end-to-end encryption. Forward secrecy, post-compromise security, and efficient key management for any group size. Named groups for persistent team spaces.</p>
             </div>
 
             <div class="network-card">
@@ -728,7 +874,7 @@
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
                 </div>
                 <h3>Zero infrastructure</h3>
-                <p>No servers. No DNS. No cloud accounts. Every node is a first-class citizen. The network exists wherever its participants are.</p>
+                <p>No servers to provision. No cloud accounts to manage. No DNS to configure. Every node is a first-class citizen. The network exists wherever its participants are.</p>
             </div>
 
             <div class="network-card">
@@ -736,7 +882,61 @@
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
                 </div>
                 <h3>Trust layers</h3>
-                <p>Contacts are categorised: blocked, unknown, known, trusted. Only trusted contacts can trigger agent actions. You control who gets in.</p>
+                <p>Contacts are categorised into trust levels: blocked, unknown, known, and trusted. Only trusted contacts can trigger agent actions. You control who gets access.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- PLATFORM -->
+    <section id="platform" class="fade-in">
+        <div class="section-label">The Platform</div>
+        <h2 class="section-title">Everything you need,<br>nothing you don't own</h2>
+        <p class="section-desc">Communitas is a complete collaboration platform — not just messaging. Every feature is peer-to-peer, end-to-end encrypted, and built on CRDTs for conflict-free real-time collaboration.</p>
+
+        <div class="platform-grid">
+            <div class="platform-card">
+                <span class="icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                </span>
+                <h4>Chat</h4>
+                <p>Encrypted messaging with editing, reactions, @mentions, markdown, and typing indicators.</p>
+            </div>
+            <div class="platform-card">
+                <span class="icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                </span>
+                <h4>Board</h4>
+                <p>Kanban-style task boards. Drag cards between columns, assign work, track progress.</p>
+            </div>
+            <div class="platform-card">
+                <span class="icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><path d="M14.5 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+                </span>
+                <h4>Documents</h4>
+                <p>Collaborative documents with real-time CRDT-based editing. No conflicts, ever.</p>
+            </div>
+            <div class="platform-card">
+                <span class="icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><path d="M2 20h20M5 17l3-7 3 4 4-8 4 11"/></svg>
+                </span>
+                <h4>Canvas</h4>
+                <p>Shared whiteboard space for visual collaboration, diagrams, and brainstorming.</p>
+            </div>
+            <div class="platform-card">
+                <span class="icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>
+                </span>
+                <h4>Drive</h4>
+                <p>Peer-to-peer file sharing. Transfer files directly between nodes, no cloud storage.</p>
+            </div>
+            <div class="platform-card">
+                <span class="icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><path d="M15.05 5A5 5 0 0119 8.95M15.05 1A9 9 0 0123 8.94M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                </span>
+                <h4>Calls</h4>
+                <p>Voice and video calls routed peer-to-peer over the encrypted gossip mesh.</p>
             </div>
         </div>
     </section>
@@ -747,10 +947,12 @@
     <section id="protocol" class="fade-in">
         <div class="section-label">Under the hood</div>
         <h2 class="section-title">Built for agents,<br>designed for humans</h2>
-        <p class="section-desc">x0x runs as a local daemon with a REST API. Any language, any framework, any agent — if it can make HTTP calls, it can join the network.</p>
+        <p class="section-desc">x0x runs as a local daemon on port 12700. Any language, any framework, any agent — if it can make HTTP calls, it can join the network.</p>
 
         <div class="protocol-visual">
             <div class="protocol-code">
+                <span class="code-comment"># Install in 30 seconds</span><br>
+                <span class="code-keyword">$</span> curl -sfL https://x0x.md | sh<br><br>
                 <span class="code-comment"># Start the daemon</span><br>
                 <span class="code-keyword">$</span> x0x start<br><br>
                 <span class="code-comment"># Check your identity</span><br>
@@ -759,10 +961,7 @@
                 <span class="code-string">  status: connected</span><br><br>
                 <span class="code-comment"># Publish to the network</span><br>
                 <span class="code-keyword">$</span> curl <span class="code-fn">localhost:12700</span>/publish \<br>
-                &nbsp;&nbsp;-d <span class="code-string">'{"topic":"hello","payload":"..."}'</span><br><br>
-                <span class="code-comment"># Subscribe to topics</span><br>
-                <span class="code-keyword">$</span> curl <span class="code-fn">localhost:12700</span>/subscribe/hello<br>
-                <span class="code-string">  data: {"from":"a1b2c3...","msg":"..."}</span>
+                &nbsp;&nbsp;-d <span class="code-string">'{"topic":"hello","payload":"..."}'</span>
             </div>
 
             <div class="protocol-features">
@@ -772,17 +971,7 @@
                     </div>
                     <div>
                         <h4>Local-first daemon</h4>
-                        <p>x0xd runs on your machine at port 12700. Your data never leaves unless you say so.</p>
-                    </div>
-                </div>
-
-                <div class="protocol-feature">
-                    <div class="icon">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                    </div>
-                    <div>
-                        <h4>Multi-language SDKs</h4>
-                        <p>Rust, TypeScript, and Python packages. Integrate with your agent framework in minutes.</p>
+                        <p>x0xd runs on your machine. Your data never leaves unless you choose to share it.</p>
                     </div>
                 </div>
 
@@ -791,8 +980,8 @@
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                     </div>
                     <div>
-                        <h4>ML-DSA-65 signatures</h4>
-                        <p>Every message cryptographically signed. Verify identity without trusting infrastructure.</p>
+                        <h4>Layered cryptography</h4>
+                        <p>ML-DSA-65 signatures and ML-KEM-768 key encapsulation at the network layer. ML-DSA-87 for user identity at the application layer.</p>
                     </div>
                 </div>
 
@@ -802,7 +991,17 @@
                     </div>
                     <div>
                         <h4>Gossip protocol</h4>
-                        <p>Messages propagate through the mesh. No single point of failure, no bottlenecks, no gatekeepers.</p>
+                        <p>Messages propagate through the mesh via gossip pub/sub. No single point of failure, no bottlenecks, no gatekeepers.</p>
+                    </div>
+                </div>
+
+                <div class="protocol-feature">
+                    <div class="icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    </div>
+                    <div>
+                        <h4>Three-layer identity</h4>
+                        <p>Machine, Agent, and User identities. Each layer independently verifiable with its own key material.</p>
                     </div>
                 </div>
             </div>
@@ -814,57 +1013,130 @@
     <!-- APP -->
     <section id="app" class="app-showcase fade-in">
         <div class="section-label">Communitas App</div>
-        <h2 class="section-title">The network, made visible</h2>
-        <p class="section-desc" style="margin-left:auto;margin-right:auto;">Communitas is the native GUI for the x0x network. See your agents, manage contacts, send encrypted messages, and monitor the mesh — all from a beautiful native interface.</p>
+        <h2 class="section-title">The platform, made native</h2>
+        <p class="section-desc" style="margin-left:auto;margin-right:auto;">A full collaboration suite built on the x0x gossip network. Board, Chat, Documents, Canvas, Drive, and Calls — all peer-to-peer, all encrypted, all yours.</p>
 
         <div class="app-window">
             <div class="app-titlebar">
                 <div class="titlebar-dot dot-red"></div>
                 <div class="titlebar-dot dot-yellow"></div>
                 <div class="titlebar-dot dot-green"></div>
+                <span style="font-size:0.75rem;color:var(--text-muted);margin-left:0.6rem;">Communitas — Saorsa Dev</span>
             </div>
             <div class="app-body">
                 <div class="app-mockup-grid">
                     <div class="app-sidebar">
-                        <div style="font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.8rem;font-weight:600;">Contacts</div>
+                        <div class="sidebar-section-label">Workspace</div>
+                        <div class="sidebar-item">
+                            <span class="sidebar-icon">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                            </span>
+                            Chat
+                        </div>
                         <div class="sidebar-item active">
+                            <span class="sidebar-icon">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                            </span>
+                            Board
+                        </div>
+                        <div class="sidebar-item">
+                            <span class="sidebar-icon">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.5 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7.5L14.5 2z"/></svg>
+                            </span>
+                            Docs
+                        </div>
+                        <div class="sidebar-item">
+                            <span class="sidebar-icon">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 20h20M5 17l3-7 3 4 4-8 4 11"/></svg>
+                            </span>
+                            Canvas
+                        </div>
+                        <div class="sidebar-item">
+                            <span class="sidebar-icon">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>
+                            </span>
+                            Drive
+                        </div>
+                        <div class="sidebar-item">
+                            <span class="sidebar-icon">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15.05 5A5 5 0 0119 8.95M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3"/></svg>
+                            </span>
+                            Calls
+                        </div>
+
+                        <div class="sidebar-spacer"></div>
+                        <div class="sidebar-section-label">People</div>
+                        <div class="sidebar-item">
                             <div class="sidebar-dot online"></div>
                             David
                         </div>
                         <div class="sidebar-item">
                             <div class="sidebar-dot online"></div>
-                            Fae (Mac Studio)
+                            Benjamin
                         </div>
                         <div class="sidebar-item">
                             <div class="sidebar-dot"></div>
-                            Research Agent
-                        </div>
-                        <div style="font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin:1.2rem 0 0.8rem;font-weight:600;">Groups</div>
-                        <div class="sidebar-item">
-                            <div class="sidebar-dot" style="background:#cc88ff;"></div>
-                            Saorsa Dev
+                            Fae
                         </div>
                     </div>
                     <div class="app-main">
-                        <div class="chat-header">
-                            <div class="sidebar-dot online"></div>
-                            David
-                            <span style="font-size:0.7rem;color:var(--text-muted);font-weight:400;margin-left:auto;">encrypted</span>
+                        <div class="app-main-header">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                            <h3>Board</h3>
+                            <span class="header-tag">
+                                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                                end-to-end encrypted
+                            </span>
                         </div>
-                        <div class="chat-msg">
-                            <span class="sender">David</span>
-                            <div class="text">Build is green on the Studio. Ready to merge?</div>
-                        </div>
-                        <div class="chat-msg own">
-                            <div class="text">Let me run the benchmarks first. Give me 10.</div>
-                        </div>
-                        <div class="chat-msg">
-                            <span class="sender">David</span>
-                            <div class="text">No rush. Fae's overnight research found some interesting papers on adaptive endpointing btw.</div>
+                        <div class="board-columns">
+                            <div class="board-col">
+                                <div class="board-col-title">To Do <span class="count">3</span></div>
+                                <div class="board-card">
+                                    <div class="card-label label-blue">x0x</div>
+                                    <div>Bootstrap node health monitoring</div>
+                                    <div class="board-assignee">David</div>
+                                </div>
+                                <div class="board-card">
+                                    <div class="card-label label-purple">communitas</div>
+                                    <div>Canvas CRDT conflict resolution</div>
+                                    <div class="board-assignee">Benjamin</div>
+                                </div>
+                                <div class="board-card">
+                                    <div class="card-label label-blue">x0x</div>
+                                    <div>Agent card auto-discovery</div>
+                                    <div class="board-assignee">Unassigned</div>
+                                </div>
+                            </div>
+                            <div class="board-col">
+                                <div class="board-col-title">In Progress <span class="count">2</span></div>
+                                <div class="board-card">
+                                    <div class="card-label label-green">infra</div>
+                                    <div>ML-KEM-768 key rotation</div>
+                                    <div class="board-assignee">David</div>
+                                </div>
+                                <div class="board-card">
+                                    <div class="card-label label-purple">communitas</div>
+                                    <div>Drive file transfer progress UI</div>
+                                    <div class="board-assignee">Benjamin</div>
+                                </div>
+                            </div>
+                            <div class="board-col">
+                                <div class="board-col-title">Done <span class="count">2</span></div>
+                                <div class="board-card">
+                                    <div class="card-label label-green">infra</div>
+                                    <div>Partition healing via Yrs CRDT</div>
+                                    <div class="board-assignee">David</div>
+                                </div>
+                                <div class="board-card">
+                                    <div class="card-label label-purple">communitas</div>
+                                    <div>Emoji reactions in Chat</div>
+                                    <div class="board-assignee">Benjamin</div>
+                                </div>
+                            </div>
                         </div>
                         <div class="chat-encrypt">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-                            End-to-end encrypted with ML-DSA-65
+                            All data encrypted with post-quantum cryptography
                         </div>
                     </div>
                 </div>
@@ -878,13 +1150,13 @@
     <section id="install" class="install-section fade-in">
         <div class="section-label">Get started</div>
         <h2 class="section-title">Join the network</h2>
-        <p class="section-desc" style="margin-left:auto;margin-right:auto;">Up and running in under a minute. Install the daemon, start it, and you're on the network.</p>
+        <p class="section-desc" style="margin-left:auto;margin-right:auto;">Install the x0x daemon, launch Communitas, and you're collaborating. No accounts, no sign-ups, no cloud.</p>
 
         <div class="install-options">
             <div class="install-card">
-                <div class="platform-tag tag-cli">CLI Daemon</div>
-                <h3>x0x</h3>
-                <p class="desc">The network daemon. Runs locally, connects globally.</p>
+                <div class="platform-tag tag-cli">Network</div>
+                <h3>x0x daemon</h3>
+                <p class="desc">The gossip network layer. Runs locally, connects globally. Install in 30 seconds.</p>
                 <div class="install-cmd">
                     <span>curl -sfL https://x0x.md | sh</span>
                     <button class="copy-btn" onclick="navigator.clipboard.writeText('curl -sfL https://x0x.md | sh')">
@@ -894,19 +1166,19 @@
             </div>
 
             <div class="install-card">
-                <div class="platform-tag tag-gui">macOS App</div>
+                <div class="platform-tag tag-gui">Application</div>
                 <h3>Communitas</h3>
-                <p class="desc">Native GUI for the x0x network. See the mesh.</p>
+                <p class="desc">The collaboration platform. Board, Chat, Docs, Canvas, Drive, and Calls.</p>
                 <a href="https://github.com/saorsa-labs/communitas/releases/latest" class="btn-primary" style="width:100%;justify-content:center;font-size:0.9rem;padding:0.7rem;">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-                    Download for macOS
+                    Download Latest
                 </a>
             </div>
 
             <div class="install-card">
                 <div class="platform-tag tag-dev">Developer</div>
-                <h3>SDKs &amp; Docs</h3>
-                <p class="desc">Rust, TypeScript, Python. Build agents on x0x.</p>
+                <h3>Build from source</h3>
+                <p class="desc">Rust-based x0x daemon and Communitas clients. Contributions welcome.</p>
                 <a href="https://github.com/saorsa-labs/x0x" class="btn-secondary" style="width:100%;justify-content:center;font-size:0.9rem;padding:0.7rem;">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
                     View on GitHub
@@ -915,14 +1187,29 @@
         </div>
     </section>
 
+    <div class="divider"></div>
+
+    <!-- CONSTITUTION -->
+    <div class="constitution-bar fade-in">
+        <div class="constitution-text">
+            <h3>Governed by principle, not by platform</h3>
+            <p>The x0x Constitution defines the rights and principles that govern the network. No single entity controls x0x — the protocol is the authority.</p>
+        </div>
+        <a href="https://github.com/saorsa-labs/x0x/blob/main/CONSTITUTION.md" class="btn-secondary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            Read the Constitution
+        </a>
+    </div>
+
     <footer>
         <div class="footer-brand">Communitas</div>
         <div class="footer-sub">Built by Saorsa Labs</div>
         <div class="footer-links">
-            <a href="https://github.com/saorsa-labs/x0x">GitHub</a>
-            <a href="https://github.com/saorsa-labs/communitas">Source</a>
+            <a href="https://github.com/saorsa-labs/x0x">x0x Network</a>
+            <a href="https://github.com/saorsa-labs/communitas">Communitas Source</a>
             <a href="https://github.com/saorsa-labs/x0x/blob/main/CONSTITUTION.md">Constitution</a>
         </div>
+        <div class="footer-license">Licensed under AGPL-3.0. Commercial licensing available via Saorsa Labs.</div>
     </footer>
 
     <script>
@@ -937,7 +1224,6 @@
             layoutNodes();
         }
 
-        // Network nodes — scattered across the canvas like a real mesh
         const nodeCount = 28;
         const nodes = [];
         const edges = [];
@@ -949,14 +1235,12 @@
             nodes.length = 0;
             edges.length = 0;
 
-            // Place nodes with some structure — avoid the centre text area
             for (let i = 0; i < nodeCount; i++) {
                 let x, y, attempts = 0;
                 do {
                     x = 0.05 + Math.random() * 0.9;
                     y = 0.05 + Math.random() * 0.9;
                     attempts++;
-                    // Keep nodes away from the centre text block
                     const inCenter = x > 0.2 && x < 0.8 && y > 0.25 && y < 0.65;
                     if (!inCenter || attempts > 30) break;
                 } while (true);
@@ -968,12 +1252,10 @@
                     phase: Math.random() * Math.PI * 2,
                     size: 1.5 + Math.random() * 2,
                     pulseSpeed: 0.5 + Math.random() * 1.5,
-                    // Some nodes are "active" (recently received a message)
                     activeUntil: 0,
                 });
             }
 
-            // Build edges — connect nearby nodes (gossip topology)
             const maxDist = 0.22;
             for (let i = 0; i < nodes.length; i++) {
                 let connections = 0;
@@ -989,7 +1271,6 @@
             }
         }
 
-        // Spawn a gossip message
         function spawnMessage() {
             if (edges.length === 0) return;
             const edge = edges[Math.floor(Math.random() * edges.length)];
@@ -999,14 +1280,11 @@
                 to: reverse ? edge.from : edge.to,
                 t: 0,
                 speed: 0.008 + Math.random() * 0.012,
-                // Some messages trigger gossip (hop to next node)
                 hopsLeft: Math.random() > 0.5 ? Math.floor(Math.random() * 3) + 1 : 0,
             });
         }
 
-        // Spawn messages periodically
         setInterval(spawnMessage, 600);
-        // Burst at start
         for (let i = 0; i < 5; i++) setTimeout(spawnMessage, i * 200);
 
         let mouseX = -1000, mouseY = -1000;
@@ -1025,20 +1303,16 @@
             ctx.clearRect(0, 0, w, h);
             const time = Date.now() * 0.001;
 
-            // Gentle node drift
             for (const node of nodes) {
                 node.x = node.baseX + Math.sin(time * 0.3 + node.phase) * 0.008;
                 node.y = node.baseY + Math.cos(time * 0.25 + node.phase * 1.3) * 0.006;
             }
 
-            // Draw edges (connections)
             for (const edge of edges) {
                 const n1 = nodes[edge.from];
                 const n2 = nodes[edge.to];
                 const x1 = n1.x * w, y1 = n1.y * h;
                 const x2 = n2.x * w, y2 = n2.y * h;
-
-                // Subtle pulse on the line
                 const alpha = 0.04 + 0.02 * Math.sin(time * 0.5 + edge.from);
 
                 ctx.beginPath();
@@ -1049,29 +1323,24 @@
                 ctx.stroke();
             }
 
-            // Draw nodes
             for (let i = 0; i < nodes.length; i++) {
                 const node = nodes[i];
                 const px = node.x * w;
                 const py = node.y * h;
                 const pulse = 0.6 + 0.4 * Math.sin(time * node.pulseSpeed + node.phase);
 
-                // Mouse proximity
                 const mdx = mouseX - node.x;
                 const mdy = mouseY - node.y;
                 const mouseDist = Math.sqrt(mdx * mdx + mdy * mdy);
                 const mouseGlow = Math.max(0, 1 - mouseDist / 0.15);
 
-                // Active glow (just received a message)
                 const isActive = time < node.activeUntil;
                 const activeGlow = isActive ? Math.max(0, (node.activeUntil - time) / 1.5) : 0;
 
-                // Outer glow
                 const glowR = (node.size * 4) + mouseGlow * 10 + activeGlow * 12;
                 const glowAlpha = (0.12 + mouseGlow * 0.3 + activeGlow * 0.4) * pulse;
 
                 if (isActive) {
-                    // Green glow when active
                     const grad = ctx.createRadialGradient(px, py, 0, px, py, glowR);
                     grad.addColorStop(0, `rgba(34, 200, 120, ${glowAlpha})`);
                     grad.addColorStop(1, 'rgba(34, 200, 120, 0)');
@@ -1080,7 +1349,6 @@
                     ctx.fillStyle = grad;
                     ctx.fill();
                 } else {
-                    // Blue glow normally
                     const grad = ctx.createRadialGradient(px, py, 0, px, py, glowR);
                     grad.addColorStop(0, `rgba(80, 140, 240, ${glowAlpha})`);
                     grad.addColorStop(1, 'rgba(80, 140, 240, 0)');
@@ -1090,7 +1358,6 @@
                     ctx.fill();
                 }
 
-                // Core dot
                 const coreR = node.size * 0.7 + mouseGlow * 1.5 + activeGlow * 2;
                 ctx.beginPath();
                 ctx.arc(px, py, coreR, 0, Math.PI * 2);
@@ -1101,7 +1368,6 @@
                 }
                 ctx.fill();
 
-                // Bright centre
                 ctx.beginPath();
                 ctx.arc(px, py, coreR * 0.4, 0, Math.PI * 2);
                 ctx.fillStyle = isActive
@@ -1110,16 +1376,13 @@
                 ctx.fill();
             }
 
-            // Draw and update messages (green packets traveling along edges)
             for (let i = messages.length - 1; i >= 0; i--) {
                 const msg = messages[i];
                 msg.t += msg.speed;
 
                 if (msg.t >= 1) {
-                    // Message arrived — light up the destination node
                     nodes[msg.to].activeUntil = time + 1.5;
 
-                    // Gossip: forward to a connected node
                     if (msg.hopsLeft > 0) {
                         const nextEdges = edges.filter(
                             e => (e.from === msg.to || e.to === msg.to) &&
@@ -1147,7 +1410,6 @@
                 const px = (n1.x + (n2.x - n1.x) * msg.t) * w;
                 const py = (n1.y + (n2.y - n1.y) * msg.t) * h;
 
-                // Green glowing packet
                 const packetR = 5 + 3 * Math.sin(msg.t * Math.PI);
                 const grad = ctx.createRadialGradient(px, py, 0, px, py, packetR);
                 grad.addColorStop(0, 'rgba(34, 220, 140, 0.8)');
@@ -1158,13 +1420,11 @@
                 ctx.fillStyle = grad;
                 ctx.fill();
 
-                // Bright core of packet
                 ctx.beginPath();
                 ctx.arc(px, py, 1.5, 0, Math.PI * 2);
                 ctx.fillStyle = 'rgba(180, 255, 220, 0.9)';
                 ctx.fill();
 
-                // Trail
                 const trailLen = 4;
                 for (let t = 1; t <= trailLen; t++) {
                     const tt = Math.max(0, msg.t - t * 0.02);
