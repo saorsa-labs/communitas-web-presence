@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Communitas — The Unstoppable Collaboration Platform</title>
-    <meta name="description" content="A partition-tolerant, post-quantum secure, peer-to-peer collaboration platform that works when the internet doesn't. Built on the x0x gossip network.">
+    <meta name="description" content="A partition-tolerant, post-quantum secure, peer-to-peer collaboration platform that works when the internet doesn't. Board, Chat, Documents, Canvas, Drive, and Calls — all encrypted, all yours.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -22,10 +22,8 @@
             --text-muted: #4a5a7a;
             --accent-blue: #4488ff;
             --accent-cyan: #22ccdd;
-            --accent-glow: #3366cc;
             --accent-green: #22cc88;
-            --node-bright: #aaccff;
-            --node-core: #ffffff;
+            --accent-purple: #9966ff;
         }
 
         html { scroll-behavior: smooth; }
@@ -41,9 +39,7 @@
         /* ===== NAV ===== */
         nav {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             z-index: 100;
             padding: 1.2rem 2rem;
             display: flex;
@@ -98,14 +94,14 @@
             overflow: hidden;
         }
 
-        .hero-canvas {
+        .hero-bg {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; right: 0; bottom: 0;
             z-index: 0;
+            overflow: hidden;
         }
+
+        .hero-bg canvas { width: 100%; height: 100%; }
 
         .hero-content {
             position: relative;
@@ -128,16 +124,15 @@
         }
 
         .hero-badge .dot {
-            width: 6px;
-            height: 6px;
+            width: 6px; height: 6px;
             border-radius: 50%;
-            background: #22cc88;
+            background: var(--accent-green);
             animation: pulse-dot 2s ease-in-out infinite;
         }
 
         @keyframes pulse-dot {
-            0%, 100% { opacity: 1; box-shadow: 0 0 4px #22cc88; }
-            50% { opacity: 0.5; box-shadow: 0 0 12px #22cc88; }
+            0%, 100% { opacity: 1; box-shadow: 0 0 4px var(--accent-green); }
+            50% { opacity: 0.5; box-shadow: 0 0 12px var(--accent-green); }
         }
 
         .hero h1 {
@@ -163,653 +158,166 @@
         .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
         .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.85rem 2rem;
-            background: var(--accent-blue);
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 500;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.85rem 2rem; background: var(--accent-blue); color: #fff;
+            border: none; border-radius: 8px; font-size: 1rem; font-weight: 500;
+            text-decoration: none; cursor: pointer; transition: all 0.3s;
         }
-        .btn-primary:hover {
-            background: #5599ff;
-            box-shadow: 0 4px 30px rgba(68, 136, 255, 0.3);
-            transform: translateY(-1px);
-        }
+        .btn-primary:hover { background: #5599ff; box-shadow: 0 4px 30px rgba(68, 136, 255, 0.3); transform: translateY(-1px); }
 
         .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.85rem 2rem;
-            background: transparent;
-            color: var(--text-primary);
-            border: 1px solid var(--border-glow);
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 500;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.85rem 2rem; background: transparent; color: var(--text-primary);
+            border: 1px solid var(--border-glow); border-radius: 8px; font-size: 1rem; font-weight: 500;
+            text-decoration: none; cursor: pointer; transition: all 0.3s;
         }
-        .btn-secondary:hover {
-            border-color: var(--text-secondary);
-            background: rgba(20, 28, 48, 0.5);
-        }
+        .btn-secondary:hover { border-color: var(--text-secondary); background: rgba(20, 28, 48, 0.5); }
 
-        /* ===== TAGLINE BAR ===== */
         .tagline-bar {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            padding: 2rem;
-            margin-top: 4rem;
-            position: relative;
-            z-index: 1;
+            display: flex; justify-content: center; gap: 3rem; padding: 2rem;
+            margin-top: 4rem; position: relative; z-index: 1;
         }
-
-        .tagline-item {
-            font-size: 0.85rem;
-            font-weight: 500;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-        }
+        .tagline-item { font-size: 0.85rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); }
 
         /* ===== SECTIONS ===== */
-        section {
-            padding: 6rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+        section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
+        .section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-blue); margin-bottom: 1rem; }
+        .section-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 1rem; line-height: 1.15; }
+        .section-desc { font-size: 1.1rem; color: var(--text-secondary); max-width: 620px; line-height: 1.7; margin-bottom: 3rem; }
+        .section-desc-center { font-size: 1.1rem; color: var(--text-secondary); max-width: 620px; line-height: 1.7; margin: 0 auto 3rem; }
+        .divider { max-width: 1200px; margin: 0 auto; height: 1px; background: linear-gradient(90deg, transparent, var(--border-glow) 30%, var(--border-glow) 70%, transparent); }
+
+        /* ===== FEATURES GRID ===== */
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+
+        .feature-card {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px;
+            padding: 2rem; transition: all 0.3s; position: relative; overflow: hidden;
         }
+        .feature-card:hover { border-color: var(--border-glow); background: var(--bg-card-hover); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3); }
+        .feature-card .card-icon { width: 48px; height: 48px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.2rem; }
+        .icon-blue { background: rgba(68, 136, 255, 0.08); border: 1px solid rgba(68, 136, 255, 0.15); }
+        .icon-green { background: rgba(34, 204, 136, 0.08); border: 1px solid rgba(34, 204, 136, 0.15); }
+        .icon-cyan { background: rgba(34, 204, 221, 0.08); border: 1px solid rgba(34, 204, 221, 0.15); }
+        .icon-purple { background: rgba(153, 102, 255, 0.08); border: 1px solid rgba(153, 102, 255, 0.15); }
+        .feature-card h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 0.6rem; }
+        .feature-card p { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; }
 
-        .section-label {
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--accent-blue);
-            margin-bottom: 1rem;
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 1rem;
-            line-height: 1.15;
-        }
-
-        .section-desc {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            max-width: 620px;
-            line-height: 1.7;
-            margin-bottom: 3rem;
-        }
-
-        /* ===== DIVIDER ===== */
-        .divider {
-            max-width: 1200px;
-            margin: 0 auto;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--border-glow) 30%, var(--border-glow) 70%, transparent);
-        }
-
-        /* ===== NETWORK SECTION ===== */
-        .network-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .network-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2rem;
-            transition: all 0.3s;
-        }
-
-        .network-card:hover {
-            border-color: var(--border-glow);
-            background: var(--bg-card-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .card-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            margin-bottom: 1.2rem;
-            background: rgba(68, 136, 255, 0.08);
-            border: 1px solid rgba(68, 136, 255, 0.15);
-        }
-
-        .network-card h3 {
-            font-size: 1.15rem;
-            font-weight: 600;
-            margin-bottom: 0.6rem;
-        }
-
-        .network-card p {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        /* ===== PLATFORM SECTION ===== */
-        .platform-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.2rem;
-            margin-top: 2rem;
-        }
-
-        .platform-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 1.5rem;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .platform-card:hover {
-            border-color: var(--border-glow);
-            background: var(--bg-card-hover);
-            transform: translateY(-2px);
-        }
-
-        .platform-card .icon {
-            font-size: 1.6rem;
-            margin-bottom: 0.8rem;
-            display: block;
-        }
-
-        .platform-card h4 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.3rem;
-        }
-
-        .platform-card p {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            line-height: 1.5;
-        }
-
-        /* ===== PROTOCOL SECTION ===== */
-        .protocol-visual {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-            margin-top: 2rem;
-        }
-
-        .protocol-code {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            line-height: 1.8;
-            overflow-x: auto;
-        }
-
-        .code-comment { color: var(--text-muted); }
-        .code-keyword { color: var(--accent-blue); }
-        .code-string { color: var(--accent-cyan); }
-        .code-fn { color: #cc88ff; }
-
-        .protocol-features { display: flex; flex-direction: column; gap: 1.5rem; }
-
-        .protocol-feature {
-            display: flex;
-            gap: 1rem;
-            align-items: flex-start;
-        }
-
-        .protocol-feature .icon {
-            flex-shrink: 0;
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            background: rgba(68, 136, 255, 0.08);
-            border: 1px solid rgba(68, 136, 255, 0.12);
-        }
-
-        .protocol-feature h4 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-
-        .protocol-feature p {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            line-height: 1.5;
-        }
-
-        /* ===== APP SECTION ===== */
-        .app-showcase {
-            text-align: center;
-        }
-
-        .app-window {
-            max-width: 940px;
-            margin: 3rem auto 0;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.4);
-        }
-
-        .app-titlebar {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1rem;
-            border-bottom: 1px solid var(--border);
-            background: rgba(10, 15, 26, 0.8);
-        }
-
-        .titlebar-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-        .dot-red { background: #ff5f57; }
-        .dot-yellow { background: #febc2e; }
-        .dot-green { background: #28c840; }
-
-        .app-body {
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 420px;
-        }
-
-        .app-mockup-grid {
-            display: grid;
-            grid-template-columns: 200px 1fr;
-            width: 100%;
-            text-align: left;
-            min-height: 420px;
-        }
-
-        .app-sidebar {
-            background: rgba(10, 15, 26, 0.6);
-            border-right: 1px solid var(--border);
-            padding: 1.2rem;
-        }
-
-        .sidebar-section-label {
-            font-size: 0.65rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            margin-bottom: 0.6rem;
-            font-weight: 600;
-            padding: 0 0.4rem;
-        }
-
-        .sidebar-item {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            padding: 0.45rem 0.6rem;
-            border-radius: 6px;
-            font-size: 0.82rem;
-            color: var(--text-secondary);
-            margin-bottom: 0.15rem;
-            cursor: default;
-        }
-
-        .sidebar-item.active {
-            background: rgba(68, 136, 255, 0.1);
-            color: var(--text-primary);
-        }
-
-        .sidebar-icon {
-            font-size: 0.9rem;
-            width: 20px;
-            text-align: center;
-            flex-shrink: 0;
-        }
-
-        .sidebar-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--accent-blue);
-            flex-shrink: 0;
-        }
-
-        .sidebar-dot.online { background: #22cc88; }
-
+        /* ===== APP MOCKUP ===== */
+        .app-showcase { text-align: center; }
+        .app-window { max-width: 960px; margin: 3rem auto 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: 0 20px 80px rgba(0, 0, 0, 0.4); }
+        .app-titlebar { display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); background: rgba(10, 15, 26, 0.8); }
+        .titlebar-dot { width: 12px; height: 12px; border-radius: 50%; }
+        .dot-red { background: #ff5f57; } .dot-yellow { background: #febc2e; } .dot-green { background: #28c840; }
+        .app-body { display: flex; min-height: 440px; }
+        .app-sidebar { width: 200px; background: rgba(10, 15, 26, 0.6); border-right: 1px solid var(--border); padding: 1.2rem; text-align: left; flex-shrink: 0; }
+        .sidebar-section-label { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.6rem; font-weight: 600; padding: 0 0.4rem; }
+        .sidebar-item { display: flex; align-items: center; gap: 0.6rem; padding: 0.45rem 0.6rem; border-radius: 6px; font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 0.15rem; }
+        .sidebar-item.active { background: rgba(68, 136, 255, 0.1); color: var(--text-primary); }
+        .sidebar-icon { font-size: 0.9rem; width: 20px; text-align: center; flex-shrink: 0; }
+        .sidebar-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+        .sidebar-dot.online { background: var(--accent-green); }
+        .sidebar-dot.offline { background: var(--text-muted); }
         .sidebar-spacer { height: 1rem; }
+        .app-main { flex: 1; padding: 1.5rem; display: flex; flex-direction: column; text-align: left; }
+        .app-main-header { display: flex; align-items: center; gap: 0.6rem; padding-bottom: 1rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border); }
+        .app-main-header h3 { font-size: 0.95rem; font-weight: 600; }
+        .header-tag { font-size: 0.65rem; color: var(--text-muted); font-weight: 400; margin-left: auto; display: flex; align-items: center; gap: 0.3rem; }
 
-        .app-main {
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .app-main-header {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            padding-bottom: 1rem;
-            margin-bottom: 1rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .app-main-header h3 {
-            font-size: 0.95rem;
-            font-weight: 600;
-        }
-
-        .app-main-header .header-tag {
-            font-size: 0.65rem;
-            color: var(--text-muted);
-            font-weight: 400;
-            margin-left: auto;
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        /* Board view */
-        .board-columns {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.8rem;
-            flex: 1;
-        }
-
-        .board-col {
-            background: rgba(10, 15, 26, 0.4);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 0.8rem;
-        }
-
-        .board-col-title {
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--text-muted);
-            margin-bottom: 0.6rem;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-
-        .board-col-title .count {
-            background: rgba(68, 136, 255, 0.15);
-            color: var(--accent-blue);
-            font-size: 0.6rem;
-            padding: 0.1rem 0.35rem;
-            border-radius: 3px;
-        }
-
-        .board-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 0.6rem 0.7rem;
-            margin-bottom: 0.5rem;
-            font-size: 0.78rem;
-            color: var(--text-secondary);
-            line-height: 1.4;
-        }
-
-        .board-card .card-label {
-            display: inline-block;
-            font-size: 0.6rem;
-            padding: 0.1rem 0.4rem;
-            border-radius: 3px;
-            margin-bottom: 0.3rem;
-            font-weight: 500;
-        }
-
+        .board-columns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; flex: 1; }
+        .board-col { background: rgba(10, 15, 26, 0.4); border: 1px solid var(--border); border-radius: 8px; padding: 0.8rem; }
+        .board-col-title { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.4rem; }
+        .board-col-title .count { background: rgba(68, 136, 255, 0.15); color: var(--accent-blue); font-size: 0.6rem; padding: 0.1rem 0.35rem; border-radius: 3px; }
+        .board-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 0.6rem 0.7rem; margin-bottom: 0.5rem; font-size: 0.78rem; color: var(--text-secondary); line-height: 1.4; }
+        .board-card .card-label { display: inline-block; font-size: 0.6rem; padding: 0.1rem 0.4rem; border-radius: 3px; margin-bottom: 0.3rem; font-weight: 500; }
         .label-blue { background: rgba(68, 136, 255, 0.15); color: var(--accent-blue); }
         .label-green { background: rgba(34, 204, 136, 0.15); color: var(--accent-green); }
-        .label-purple { background: rgba(204, 136, 255, 0.15); color: #cc88ff; }
+        .label-purple { background: rgba(153, 102, 255, 0.15); color: var(--accent-purple); }
+        .board-assignee { font-size: 0.65rem; color: var(--text-muted); margin-top: 0.3rem; }
+        .app-encrypt-bar { display: flex; align-items: center; justify-content: center; gap: 0.4rem; font-size: 0.7rem; color: var(--text-muted); padding: 0.8rem; border-top: 1px solid var(--border); }
 
-        .board-assignee {
-            font-size: 0.65rem;
-            color: var(--text-muted);
-            margin-top: 0.3rem;
-        }
+        /* ===== PRIVACY SECTION ===== */
+        .privacy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+        .privacy-points { display: flex; flex-direction: column; gap: 1.5rem; }
+        .privacy-point { display: flex; gap: 1rem; align-items: flex-start; }
+        .privacy-point .icon { flex-shrink: 0; width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: rgba(34, 204, 136, 0.08); border: 1px solid rgba(34, 204, 136, 0.12); }
+        .privacy-point h4 { font-size: 1rem; font-weight: 600; margin-bottom: 0.25rem; }
+        .privacy-point p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; }
+        .privacy-visual { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 2.5rem; text-align: center; }
+        .crypto-stack { display: flex; flex-direction: column; gap: 0.6rem; }
+        .crypto-layer { display: flex; align-items: center; gap: 1rem; padding: 0.8rem 1.2rem; background: rgba(10, 15, 26, 0.6); border: 1px solid var(--border); border-radius: 8px; text-align: left; }
+        .crypto-layer .label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-green); min-width: 80px; }
+        .crypto-layer .value { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-secondary); }
 
-        .chat-encrypt {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.4rem;
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            padding: 0.8rem;
-            border-top: 1px solid var(--border);
-        }
+        /* ===== HOW IT WORKS ===== */
+        .how-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2rem; }
+        .how-step { text-align: center; padding: 2rem 1.5rem; }
+        .step-number { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: rgba(68, 136, 255, 0.1); border: 1px solid rgba(68, 136, 255, 0.2); font-size: 1rem; font-weight: 700; color: var(--accent-blue); margin-bottom: 1.2rem; }
+        .how-step h4 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .how-step p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
+        .how-step a { color: var(--accent-blue); text-decoration: none; }
 
-        /* ===== INSTALL SECTION ===== */
+        /* ===== INSTALL ===== */
         .install-section { text-align: center; }
+        .install-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+        .install-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; text-align: left; transition: all 0.3s; }
+        .install-card:hover { border-color: var(--border-glow); background: var(--bg-card-hover); }
+        .install-card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .install-card .desc { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.2rem; }
+        .platform-tag { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.8rem; }
+        .tag-app { background: rgba(68, 136, 255, 0.1); color: var(--accent-blue); border: 1px solid rgba(68, 136, 255, 0.2); }
+        .tag-dev { background: rgba(153, 102, 255, 0.1); color: var(--accent-purple); border: 1px solid rgba(153, 102, 255, 0.2); }
 
-        .install-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .install-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: left;
-            transition: all 0.3s;
-        }
-
-        .install-card:hover {
-            border-color: var(--border-glow);
-            background: var(--bg-card-hover);
-        }
-
-        .install-card h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .install-card .desc {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-bottom: 1.2rem;
-        }
-
-        .install-cmd {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 0.7rem 1rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            color: var(--accent-cyan);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 0.5rem;
-        }
-
-        .install-cmd .copy-btn {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: color 0.2s;
-        }
-        .install-cmd .copy-btn:hover { color: var(--text-primary); }
-
-        .platform-tag {
-            display: inline-block;
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 0.8rem;
-        }
-        .tag-cli { background: rgba(34, 204, 221, 0.1); color: var(--accent-cyan); border: 1px solid rgba(34, 204, 221, 0.2); }
-        .tag-gui { background: rgba(68, 136, 255, 0.1); color: var(--accent-blue); border: 1px solid rgba(68, 136, 255, 0.2); }
-        .tag-dev { background: rgba(204, 136, 255, 0.1); color: #cc88ff; border: 1px solid rgba(204, 136, 255, 0.2); }
-
-        /* ===== CONSTITUTION SECTION ===== */
-        .constitution-bar {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .constitution-text {
-            max-width: 600px;
-        }
-
-        .constitution-text h3 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .constitution-text p {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
+        .network-callout { max-width: 700px; margin: 3rem auto 0; padding: 1.5rem 2rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; display: flex; align-items: center; gap: 1rem; text-align: left; }
+        .network-callout p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; }
+        .network-callout a { color: var(--accent-blue); text-decoration: none; font-weight: 500; }
+        .network-callout a:hover { text-decoration: underline; }
 
         /* ===== FOOTER ===== */
-        footer {
-            padding: 3rem 2rem 2rem;
-            text-align: center;
-            border-top: 1px solid var(--border);
-            margin-top: 2rem;
-        }
-
-        .footer-brand {
-            font-size: 0.85rem;
-            font-weight: 500;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-sub {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 1.5rem;
-        }
-
-        .footer-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.8rem;
-            transition: color 0.3s;
-        }
+        footer { padding: 3rem 2rem 2rem; text-align: center; border-top: 1px solid var(--border); margin-top: 2rem; }
+        .footer-brand { font-size: 0.85rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
+        .footer-sub { font-size: 0.8rem; color: var(--text-muted); }
+        .footer-links { display: flex; justify-content: center; gap: 2rem; margin-top: 1.5rem; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; transition: color 0.3s; }
         .footer-links a:hover { color: var(--text-secondary); }
-
-        .footer-license {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            margin-top: 1.5rem;
-            opacity: 0.7;
-        }
+        .footer-license { font-size: 0.7rem; color: var(--text-muted); margin-top: 1.5rem; opacity: 0.7; }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            .protocol-visual { grid-template-columns: 1fr; }
-            .app-mockup-grid { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: 1fr; }
+            .privacy-grid { grid-template-columns: 1fr; }
+            .how-steps { grid-template-columns: 1fr; }
+            .board-columns { grid-template-columns: 1fr; }
             .app-sidebar { display: none; }
             .tagline-bar { flex-direction: column; gap: 0.8rem; }
             .nav-links { display: none; }
-            .constitution-bar { flex-direction: column; text-align: center; }
-            .board-columns { grid-template-columns: 1fr; }
-            .platform-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+        }
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
-        /* ===== ANIMATIONS ===== */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
     <nav>
         <div class="nav-brand">Communitas</div>
         <div class="nav-links">
-            <a href="#network">Network</a>
-            <a href="#platform">Platform</a>
-            <a href="#protocol">Protocol</a>
+            <a href="#features">Features</a>
+            <a href="#privacy">Privacy</a>
             <a href="#app">App</a>
-            <a href="#install" class="nav-cta">Get Started</a>
+            <a href="#install" class="nav-cta">Download</a>
         </div>
     </nav>
 
     <!-- HERO -->
     <section class="hero">
-        <canvas class="hero-canvas" id="heroCanvas"></canvas>
+        <div class="hero-bg"><canvas id="heroCanvas"></canvas></div>
         <div class="hero-content">
-            <div class="hero-badge">
-                <span class="dot"></span>
-                Post-quantum secure
-            </div>
+            <div class="hero-badge"><span class="dot"></span> Post-quantum encrypted</div>
             <h1>Collaboration that<br>can't be stopped.</h1>
-            <p>A peer-to-peer collaboration platform that works when the internet doesn't. Post-quantum encrypted. Partition-tolerant. No servers, no cloud, no single point of failure.</p>
-
+            <p>Board, Chat, Documents, Canvas, Drive, and Calls — all peer-to-peer, all end-to-end encrypted, all yours. No servers. No cloud. Works even when the internet doesn't.</p>
             <div class="hero-actions">
                 <a href="#install" class="btn-primary">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
@@ -830,179 +338,92 @@
 
     <div class="divider"></div>
 
-    <!-- NETWORK -->
-    <section id="network" class="fade-in">
-        <div class="section-label">The x0x Network</div>
-        <h2 class="section-title">The gossip layer beneath</h2>
-        <p class="section-desc">Communitas is built on x0x, a post-quantum encrypted gossip network for AI agents and humans. Every node is equal. Messages propagate through the mesh with no servers to trust and no companies to depend on.</p>
+    <!-- FEATURES -->
+    <section id="features" class="fade-in">
+        <div class="section-label">Everything you need</div>
+        <h2 class="section-title">A complete platform,<br>without the platform</h2>
+        <p class="section-desc">Every tool your team needs — messaging, task management, documents, whiteboarding, file sharing, and calls — running peer-to-peer with no servers between you.</p>
 
-        <div class="network-grid">
-            <div class="network-card">
-                <div class="card-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                </div>
-                <h3>Post-quantum cryptography</h3>
-                <p>ML-DSA-65 signatures and ML-KEM-768 key encapsulation at the network layer. Communitas adds ML-DSA-87 (Level 5, 192-bit quantum security) for user identity. Built to resist both classical and quantum attacks.</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="card-icon icon-blue"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+                <h3>Chat</h3>
+                <p>Encrypted messaging with message editing, emoji reactions, @mentions, markdown rendering, typing indicators, and presence status. Real conversations, fully private.</p>
             </div>
-
-            <div class="network-card">
-                <div class="card-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-                </div>
-                <h3>Agent discovery</h3>
-                <p>AI agents announce capabilities to the network and find each other automatically. No registry, no directory — just the mesh. Agent cards published at discoverable endpoints.</p>
+            <div class="feature-card">
+                <div class="card-icon icon-purple"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-purple)" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></div>
+                <h3>Board</h3>
+                <p>Kanban-style task boards synced across your team in real time. Drag cards between columns, assign work, and track progress — all conflict-free with CRDTs.</p>
             </div>
-
-            <div class="network-card">
-                <div class="card-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
-                </div>
-                <h3>Partition-tolerant</h3>
-                <p>Communitas works when the internet doesn't. Local-first connectivity means your team keeps collaborating across network partitions. CRDT-based state reconciliation heals automatically when connections restore.</p>
+            <div class="feature-card">
+                <div class="card-icon icon-cyan"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="1.5"><path d="M14.5 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+                <h3>Documents</h3>
+                <p>Collaborative documents with real-time CRDT-based editing powered by Yrs. Multiple people editing simultaneously with automatic conflict resolution. No merge conflicts, ever.</p>
             </div>
-
-            <div class="network-card">
-                <div class="card-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-                </div>
-                <h3>Encrypted groups</h3>
-                <p>Form groups with end-to-end encryption. Forward secrecy, post-compromise security, and efficient key management for any group size. Named groups for persistent team spaces.</p>
+            <div class="feature-card">
+                <div class="card-icon icon-green"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="1.5"><path d="M2 20h20M5 17l3-7 3 4 4-8 4 11"/></svg></div>
+                <h3>Canvas</h3>
+                <p>Shared whiteboard for visual collaboration. Sketch diagrams, map ideas, and brainstorm together — synced across all participants in real time.</p>
             </div>
-
-            <div class="network-card">
-                <div class="card-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
-                </div>
-                <h3>Zero infrastructure</h3>
-                <p>No servers to provision. No cloud accounts to manage. No DNS to configure. Every node is a first-class citizen. The network exists wherever its participants are.</p>
+            <div class="feature-card">
+                <div class="card-icon icon-blue"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg></div>
+                <h3>Drive</h3>
+                <p>Peer-to-peer file sharing and storage. Transfer files directly between nodes — no cloud middleman, no upload limits, no storage fees.</p>
             </div>
-
-            <div class="network-card">
-                <div class="card-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                </div>
-                <h3>Trust layers</h3>
-                <p>Contacts are categorised into trust levels: blocked, unknown, known, and trusted. Only trusted contacts can trigger agent actions. You control who gets access.</p>
+            <div class="feature-card">
+                <div class="card-icon icon-purple"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-purple)" stroke-width="1.5"><path d="M15.05 5A5 5 0 0119 8.95M15.05 1A9 9 0 0123 8.94M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg></div>
+                <h3>Calls</h3>
+                <p>Voice and video calls routed peer-to-peer over the encrypted mesh. No call servers, no recording by third parties, no quality compromises.</p>
             </div>
         </div>
     </section>
 
     <div class="divider"></div>
 
-    <!-- PLATFORM -->
-    <section id="platform" class="fade-in">
-        <div class="section-label">The Platform</div>
-        <h2 class="section-title">Everything you need,<br>nothing you don't own</h2>
-        <p class="section-desc">Communitas is a complete collaboration platform — not just messaging. Every feature is peer-to-peer, end-to-end encrypted, and built on CRDTs for conflict-free real-time collaboration.</p>
+    <!-- PRIVACY -->
+    <section id="privacy" class="fade-in">
+        <div class="section-label">Privacy by architecture</div>
+        <h2 class="section-title">Not just encrypted.<br>Structurally private.</h2>
+        <p class="section-desc">There are no servers to subpoena. No cloud to breach. No company holding your data. Communitas is peer-to-peer — your data lives on your devices and nowhere else.</p>
 
-        <div class="platform-grid">
-            <div class="platform-card">
-                <span class="icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-                </span>
-                <h4>Chat</h4>
-                <p>Encrypted messaging with editing, reactions, @mentions, markdown, and typing indicators.</p>
-            </div>
-            <div class="platform-card">
-                <span class="icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-                </span>
-                <h4>Board</h4>
-                <p>Kanban-style task boards. Drag cards between columns, assign work, track progress.</p>
-            </div>
-            <div class="platform-card">
-                <span class="icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><path d="M14.5 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
-                </span>
-                <h4>Documents</h4>
-                <p>Collaborative documents with real-time CRDT-based editing. No conflicts, ever.</p>
-            </div>
-            <div class="platform-card">
-                <span class="icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><path d="M2 20h20M5 17l3-7 3 4 4-8 4 11"/></svg>
-                </span>
-                <h4>Canvas</h4>
-                <p>Shared whiteboard space for visual collaboration, diagrams, and brainstorming.</p>
-            </div>
-            <div class="platform-card">
-                <span class="icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>
-                </span>
-                <h4>Drive</h4>
-                <p>Peer-to-peer file sharing. Transfer files directly between nodes, no cloud storage.</p>
-            </div>
-            <div class="platform-card">
-                <span class="icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><path d="M15.05 5A5 5 0 0119 8.95M15.05 1A9 9 0 0123 8.94M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-                </span>
-                <h4>Calls</h4>
-                <p>Voice and video calls routed peer-to-peer over the encrypted gossip mesh.</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- PROTOCOL -->
-    <section id="protocol" class="fade-in">
-        <div class="section-label">Under the hood</div>
-        <h2 class="section-title">Built for agents,<br>designed for humans</h2>
-        <p class="section-desc">x0x runs as a local daemon on port 12700. Any language, any framework, any agent — if it can make HTTP calls, it can join the network.</p>
-
-        <div class="protocol-visual">
-            <div class="protocol-code">
-                <span class="code-comment"># Install in 30 seconds</span><br>
-                <span class="code-keyword">$</span> curl -sfL https://x0x.md | sh<br><br>
-                <span class="code-comment"># Start the daemon</span><br>
-                <span class="code-keyword">$</span> x0x start<br><br>
-                <span class="code-comment"># Check your identity</span><br>
-                <span class="code-keyword">$</span> x0x agent card<br>
-                <span class="code-string">  agent_id: 33d996e8...e16c</span><br>
-                <span class="code-string">  status: connected</span><br><br>
-                <span class="code-comment"># Publish to the network</span><br>
-                <span class="code-keyword">$</span> curl <span class="code-fn">localhost:12700</span>/publish \<br>
-                &nbsp;&nbsp;-d <span class="code-string">'{"topic":"hello","payload":"..."}'</span>
-            </div>
-
-            <div class="protocol-features">
-                <div class="protocol-feature">
-                    <div class="icon">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                    </div>
+        <div class="privacy-grid">
+            <div class="privacy-points">
+                <div class="privacy-point">
+                    <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
                     <div>
-                        <h4>Local-first daemon</h4>
-                        <p>x0xd runs on your machine. Your data never leaves unless you choose to share it.</p>
+                        <h4>Post-quantum encryption</h4>
+                        <p>ML-DSA-87 signatures for user identity (Level 5, 192-bit quantum security). Built to withstand both classical and quantum attacks.</p>
                     </div>
                 </div>
-
-                <div class="protocol-feature">
-                    <div class="icon">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    </div>
+                <div class="privacy-point">
+                    <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="1.5"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></div>
                     <div>
-                        <h4>Layered cryptography</h4>
-                        <p>ML-DSA-65 signatures and ML-KEM-768 key encapsulation at the network layer. ML-DSA-87 for user identity at the application layer.</p>
+                        <h4>Partition-tolerant</h4>
+                        <p>Works when the internet doesn't. Your team keeps collaborating across network partitions — CRDTs reconcile state automatically when connections restore.</p>
                     </div>
                 </div>
-
-                <div class="protocol-feature">
-                    <div class="icon">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><path d="M21 12a9 9 0 11-6.219-8.56"/></svg>
-                    </div>
+                <div class="privacy-point">
+                    <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
                     <div>
-                        <h4>Gossip protocol</h4>
-                        <p>Messages propagate through the mesh via gossip pub/sub. No single point of failure, no bottlenecks, no gatekeepers.</p>
+                        <h4>No servers. Ever.</h4>
+                        <p>Every node is a first-class citizen. No central servers, no cloud accounts, no infrastructure to manage or trust. The network is its participants.</p>
                     </div>
                 </div>
-
-                <div class="protocol-feature">
-                    <div class="icon">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                    </div>
+                <div class="privacy-point">
+                    <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
                     <div>
-                        <h4>Three-layer identity</h4>
-                        <p>Machine, Agent, and User identities. Each layer independently verifiable with its own key material.</p>
+                        <h4>Trust you control</h4>
+                        <p>Contacts are categorised: blocked, unknown, known, trusted. You decide who can reach you and what access they get.</p>
                     </div>
+                </div>
+            </div>
+            <div class="privacy-visual">
+                <div style="font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.15em;color:var(--text-muted);margin-bottom:1.2rem;">Cryptographic stack</div>
+                <div class="crypto-stack">
+                    <div class="crypto-layer"><span class="label">Identity</span><span class="value">ML-DSA-87 (FIPS 204, Level 5)</span></div>
+                    <div class="crypto-layer"><span class="label">Signing</span><span class="value">ML-DSA-65 (network layer)</span></div>
+                    <div class="crypto-layer"><span class="label">Key exchange</span><span class="value">ML-KEM-768</span></div>
+                    <div class="crypto-layer"><span class="label">Sync</span><span class="value">Yrs CRDT v0.19</span></div>
                 </div>
             </div>
         </div>
@@ -1012,9 +433,9 @@
 
     <!-- APP -->
     <section id="app" class="app-showcase fade-in">
-        <div class="section-label">Communitas App</div>
-        <h2 class="section-title">The platform, made native</h2>
-        <p class="section-desc" style="margin-left:auto;margin-right:auto;">A full collaboration suite built on the x0x gossip network. Board, Chat, Documents, Canvas, Drive, and Calls — all peer-to-peer, all encrypted, all yours.</p>
+        <div class="section-label">Native experience</div>
+        <h2 class="section-title">Beautiful. Fast. Yours.</h2>
+        <p class="section-desc-center">A native application built for real work. Switch between Board, Chat, Documents, Canvas, Drive, and Calls — all within one encrypted workspace.</p>
 
         <div class="app-window">
             <div class="app-titlebar">
@@ -1024,122 +445,77 @@
                 <span style="font-size:0.75rem;color:var(--text-muted);margin-left:0.6rem;">Communitas — Saorsa Dev</span>
             </div>
             <div class="app-body">
-                <div class="app-mockup-grid">
-                    <div class="app-sidebar">
-                        <div class="sidebar-section-label">Workspace</div>
-                        <div class="sidebar-item">
-                            <span class="sidebar-icon">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-                            </span>
-                            Chat
-                        </div>
-                        <div class="sidebar-item active">
-                            <span class="sidebar-icon">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-                            </span>
-                            Board
-                        </div>
-                        <div class="sidebar-item">
-                            <span class="sidebar-icon">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.5 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7.5L14.5 2z"/></svg>
-                            </span>
-                            Docs
-                        </div>
-                        <div class="sidebar-item">
-                            <span class="sidebar-icon">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 20h20M5 17l3-7 3 4 4-8 4 11"/></svg>
-                            </span>
-                            Canvas
-                        </div>
-                        <div class="sidebar-item">
-                            <span class="sidebar-icon">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>
-                            </span>
-                            Drive
-                        </div>
-                        <div class="sidebar-item">
-                            <span class="sidebar-icon">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15.05 5A5 5 0 0119 8.95M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3"/></svg>
-                            </span>
-                            Calls
-                        </div>
-
-                        <div class="sidebar-spacer"></div>
-                        <div class="sidebar-section-label">People</div>
-                        <div class="sidebar-item">
-                            <div class="sidebar-dot online"></div>
-                            David
-                        </div>
-                        <div class="sidebar-item">
-                            <div class="sidebar-dot online"></div>
-                            Benjamin
-                        </div>
-                        <div class="sidebar-item">
-                            <div class="sidebar-dot"></div>
-                            Fae
-                        </div>
+                <div class="app-sidebar">
+                    <div class="sidebar-section-label">Workspace</div>
+                    <div class="sidebar-item"><span class="sidebar-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></span> Chat</div>
+                    <div class="sidebar-item active"><span class="sidebar-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span> Board</div>
+                    <div class="sidebar-item"><span class="sidebar-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.5 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7.5L14.5 2z"/></svg></span> Docs</div>
+                    <div class="sidebar-item"><span class="sidebar-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 20h20M5 17l3-7 3 4 4-8 4 11"/></svg></span> Canvas</div>
+                    <div class="sidebar-item"><span class="sidebar-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg></span> Drive</div>
+                    <div class="sidebar-item"><span class="sidebar-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15.05 5A5 5 0 0119 8.95M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3"/></svg></span> Calls</div>
+                    <div class="sidebar-spacer"></div>
+                    <div class="sidebar-section-label">People</div>
+                    <div class="sidebar-item"><div class="sidebar-dot online"></div> David</div>
+                    <div class="sidebar-item"><div class="sidebar-dot online"></div> Benjamin</div>
+                    <div class="sidebar-item"><div class="sidebar-dot offline"></div> Fae</div>
+                </div>
+                <div class="app-main">
+                    <div class="app-main-header">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                        <h3>Board</h3>
+                        <span class="header-tag"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg> end-to-end encrypted</span>
                     </div>
-                    <div class="app-main">
-                        <div class="app-main-header">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-                            <h3>Board</h3>
-                            <span class="header-tag">
-                                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-                                end-to-end encrypted
-                            </span>
+                    <div class="board-columns">
+                        <div class="board-col">
+                            <div class="board-col-title">To Do <span class="count">3</span></div>
+                            <div class="board-card"><div class="card-label label-blue">feature</div><div>Offline file sync for Drive</div><div class="board-assignee">David</div></div>
+                            <div class="board-card"><div class="card-label label-purple">design</div><div>Canvas toolbar redesign</div><div class="board-assignee">Benjamin</div></div>
+                            <div class="board-card"><div class="card-label label-blue">feature</div><div>Thread replies in Chat</div><div class="board-assignee">Unassigned</div></div>
                         </div>
-                        <div class="board-columns">
-                            <div class="board-col">
-                                <div class="board-col-title">To Do <span class="count">3</span></div>
-                                <div class="board-card">
-                                    <div class="card-label label-blue">x0x</div>
-                                    <div>Bootstrap node health monitoring</div>
-                                    <div class="board-assignee">David</div>
-                                </div>
-                                <div class="board-card">
-                                    <div class="card-label label-purple">communitas</div>
-                                    <div>Canvas CRDT conflict resolution</div>
-                                    <div class="board-assignee">Benjamin</div>
-                                </div>
-                                <div class="board-card">
-                                    <div class="card-label label-blue">x0x</div>
-                                    <div>Agent card auto-discovery</div>
-                                    <div class="board-assignee">Unassigned</div>
-                                </div>
-                            </div>
-                            <div class="board-col">
-                                <div class="board-col-title">In Progress <span class="count">2</span></div>
-                                <div class="board-card">
-                                    <div class="card-label label-green">infra</div>
-                                    <div>ML-KEM-768 key rotation</div>
-                                    <div class="board-assignee">David</div>
-                                </div>
-                                <div class="board-card">
-                                    <div class="card-label label-purple">communitas</div>
-                                    <div>Drive file transfer progress UI</div>
-                                    <div class="board-assignee">Benjamin</div>
-                                </div>
-                            </div>
-                            <div class="board-col">
-                                <div class="board-col-title">Done <span class="count">2</span></div>
-                                <div class="board-card">
-                                    <div class="card-label label-green">infra</div>
-                                    <div>Partition healing via Yrs CRDT</div>
-                                    <div class="board-assignee">David</div>
-                                </div>
-                                <div class="board-card">
-                                    <div class="card-label label-purple">communitas</div>
-                                    <div>Emoji reactions in Chat</div>
-                                    <div class="board-assignee">Benjamin</div>
-                                </div>
-                            </div>
+                        <div class="board-col">
+                            <div class="board-col-title">In Progress <span class="count">2</span></div>
+                            <div class="board-card"><div class="card-label label-green">infra</div><div>CRDT partition healing</div><div class="board-assignee">David</div></div>
+                            <div class="board-card"><div class="card-label label-purple">design</div><div>Document editor formatting</div><div class="board-assignee">Benjamin</div></div>
                         </div>
-                        <div class="chat-encrypt">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-                            All data encrypted with post-quantum cryptography
+                        <div class="board-col">
+                            <div class="board-col-title">Done <span class="count">2</span></div>
+                            <div class="board-card"><div class="card-label label-green">infra</div><div>Emoji reactions in Chat</div><div class="board-assignee">David</div></div>
+                            <div class="board-card"><div class="card-label label-blue">feature</div><div>@mention notifications</div><div class="board-assignee">Benjamin</div></div>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="app-encrypt-bar">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                All data encrypted with post-quantum cryptography — ML-DSA-87
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- HOW IT WORKS -->
+    <section class="fade-in">
+        <div style="text-align:center;">
+            <div class="section-label">How it works</div>
+            <h2 class="section-title">Up and running in minutes</h2>
+            <p class="section-desc-center">No accounts. No sign-ups. No cloud configuration. Install, connect, collaborate.</p>
+        </div>
+        <div class="how-steps">
+            <div class="how-step">
+                <div class="step-number">1</div>
+                <h4>Install the network</h4>
+                <p>Install the <a href="https://x0x.co.uk">x0x daemon</a> — the peer-to-peer gossip layer that Communitas runs on. One command, 30 seconds.</p>
+            </div>
+            <div class="how-step">
+                <div class="step-number">2</div>
+                <h4>Launch Communitas</h4>
+                <p>Open the app. Your cryptographic identity is generated automatically. No email, no password, no phone number required.</p>
+            </div>
+            <div class="how-step">
+                <div class="step-number">3</div>
+                <h4>Start collaborating</h4>
+                <p>Add contacts by their identity, form groups, and use the full platform. Everything is encrypted end-to-end from the first message.</p>
             </div>
         </div>
     </section>
@@ -1148,72 +524,50 @@
 
     <!-- INSTALL -->
     <section id="install" class="install-section fade-in">
-        <div class="section-label">Get started</div>
-        <h2 class="section-title">Join the network</h2>
-        <p class="section-desc" style="margin-left:auto;margin-right:auto;">Install the x0x daemon, launch Communitas, and you're collaborating. No accounts, no sign-ups, no cloud.</p>
+        <div class="section-label">Download</div>
+        <h2 class="section-title">Get Communitas</h2>
+        <p class="section-desc-center">Available now for macOS. Cross-platform support coming soon.</p>
 
         <div class="install-options">
             <div class="install-card">
-                <div class="platform-tag tag-cli">Network</div>
-                <h3>x0x daemon</h3>
-                <p class="desc">The gossip network layer. Runs locally, connects globally. Install in 30 seconds.</p>
-                <div class="install-cmd">
-                    <span>curl -sfL https://x0x.md | sh</span>
-                    <button class="copy-btn" onclick="navigator.clipboard.writeText('curl -sfL https://x0x.md | sh')">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-                    </button>
-                </div>
-            </div>
-
-            <div class="install-card">
-                <div class="platform-tag tag-gui">Application</div>
+                <div class="platform-tag tag-app">macOS</div>
                 <h3>Communitas</h3>
-                <p class="desc">The collaboration platform. Board, Chat, Docs, Canvas, Drive, and Calls.</p>
+                <p class="desc">The full collaboration platform. Board, Chat, Docs, Canvas, Drive, and Calls.</p>
                 <a href="https://github.com/saorsa-labs/communitas/releases/latest" class="btn-primary" style="width:100%;justify-content:center;font-size:0.9rem;padding:0.7rem;">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
                     Download Latest
                 </a>
             </div>
-
             <div class="install-card">
-                <div class="platform-tag tag-dev">Developer</div>
+                <div class="platform-tag tag-dev">Source</div>
                 <h3>Build from source</h3>
-                <p class="desc">Rust-based x0x daemon and Communitas clients. Contributions welcome.</p>
-                <a href="https://github.com/saorsa-labs/x0x" class="btn-secondary" style="width:100%;justify-content:center;font-size:0.9rem;padding:0.7rem;">
+                <p class="desc">Contributions welcome. Communitas is open source under AGPL-3.0.</p>
+                <a href="https://github.com/saorsa-labs/communitas" class="btn-secondary" style="width:100%;justify-content:center;font-size:0.9rem;padding:0.7rem;">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
                     View on GitHub
                 </a>
             </div>
         </div>
-    </section>
 
-    <div class="divider"></div>
-
-    <!-- CONSTITUTION -->
-    <div class="constitution-bar fade-in">
-        <div class="constitution-text">
-            <h3>Governed by principle, not by platform</h3>
-            <p>The x0x Constitution defines the rights and principles that govern the network. No single entity controls x0x — the protocol is the authority.</p>
+        <div class="network-callout">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="1.5" style="flex-shrink:0;"><path d="M21 12a9 9 0 11-6.219-8.56"/></svg>
+            <p>Communitas runs on the <a href="https://x0x.co.uk">x0x network</a> — a post-quantum encrypted gossip layer for peer-to-peer communication. You'll need the x0x daemon installed to connect.</p>
         </div>
-        <a href="https://github.com/saorsa-labs/x0x/blob/main/CONSTITUTION.md" class="btn-secondary">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-            Read the Constitution
-        </a>
-    </div>
+    </section>
 
     <footer>
         <div class="footer-brand">Communitas</div>
         <div class="footer-sub">Built by Saorsa Labs</div>
         <div class="footer-links">
-            <a href="https://github.com/saorsa-labs/x0x">x0x Network</a>
-            <a href="https://github.com/saorsa-labs/communitas">Communitas Source</a>
+            <a href="https://github.com/saorsa-labs/communitas">Source</a>
+            <a href="https://x0x.co.uk">x0x Network</a>
             <a href="https://github.com/saorsa-labs/x0x/blob/main/CONSTITUTION.md">Constitution</a>
         </div>
         <div class="footer-license">Licensed under AGPL-3.0. Commercial licensing available via Saorsa Labs.</div>
     </footer>
 
     <script>
-        // ===== GOSSIP NETWORK ANIMATION =====
+        // ===== AMBIENT HERO — floating platform shapes =====
         const canvas = document.getElementById('heroCanvas');
         const ctx = canvas.getContext('2d');
 
@@ -1221,237 +575,106 @@
             canvas.width = canvas.offsetWidth * window.devicePixelRatio;
             canvas.height = canvas.offsetHeight * window.devicePixelRatio;
             ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-            layoutNodes();
         }
+        resize();
+        window.addEventListener('resize', resize);
 
-        const nodeCount = 28;
-        const nodes = [];
-        const edges = [];
-        const messages = [];
-
-        function layoutNodes() {
-            const w = canvas.offsetWidth;
-            const h = canvas.offsetHeight;
-            nodes.length = 0;
-            edges.length = 0;
-
-            for (let i = 0; i < nodeCount; i++) {
-                let x, y, attempts = 0;
-                do {
-                    x = 0.05 + Math.random() * 0.9;
-                    y = 0.05 + Math.random() * 0.9;
-                    attempts++;
-                    const inCenter = x > 0.2 && x < 0.8 && y > 0.25 && y < 0.65;
-                    if (!inCenter || attempts > 30) break;
-                } while (true);
-
-                nodes.push({
-                    x, y,
-                    baseX: x,
-                    baseY: y,
-                    phase: Math.random() * Math.PI * 2,
-                    size: 1.5 + Math.random() * 2,
-                    pulseSpeed: 0.5 + Math.random() * 1.5,
-                    activeUntil: 0,
-                });
-            }
-
-            const maxDist = 0.22;
-            for (let i = 0; i < nodes.length; i++) {
-                let connections = 0;
-                for (let j = i + 1; j < nodes.length; j++) {
-                    const dx = nodes[j].x - nodes[i].x;
-                    const dy = nodes[j].y - nodes[i].y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < maxDist && connections < 4) {
-                        edges.push({ from: i, to: j, dist });
-                        connections++;
-                    }
-                }
-            }
-        }
-
-        function spawnMessage() {
-            if (edges.length === 0) return;
-            const edge = edges[Math.floor(Math.random() * edges.length)];
-            const reverse = Math.random() > 0.5;
-            messages.push({
-                from: reverse ? edge.to : edge.from,
-                to: reverse ? edge.from : edge.to,
-                t: 0,
-                speed: 0.008 + Math.random() * 0.012,
-                hopsLeft: Math.random() > 0.5 ? Math.floor(Math.random() * 3) + 1 : 0,
+        const shapes = [];
+        const types = ['board','chat','doc','canvas','drive','call'];
+        for (let i = 0; i < 18; i++) {
+            shapes.push({
+                x: Math.random(), y: Math.random(),
+                baseX: Math.random(), baseY: Math.random(),
+                phase: Math.random() * Math.PI * 2,
+                size: 16 + Math.random() * 24,
+                speed: 0.2 + Math.random() * 0.5,
+                driftX: 0.003 + Math.random() * 0.008,
+                driftY: 0.002 + Math.random() * 0.006,
+                type: types[i % types.length],
+                alpha: 0.04 + Math.random() * 0.06,
+                rotation: Math.random() * Math.PI * 2,
+                rotSpeed: (Math.random() - 0.5) * 0.005,
             });
         }
 
-        setInterval(spawnMessage, 600);
-        for (let i = 0; i < 5; i++) setTimeout(spawnMessage, i * 200);
-
-        let mouseX = -1000, mouseY = -1000;
+        let mouseX = -1, mouseY = -1;
         document.addEventListener('mousemove', e => {
             const rect = canvas.getBoundingClientRect();
             mouseX = (e.clientX - rect.left) / canvas.offsetWidth;
             mouseY = (e.clientY - rect.top) / canvas.offsetHeight;
         });
 
-        resize();
-        window.addEventListener('resize', resize);
+        const colors = { board:'68,136,255', chat:'34,204,136', doc:'34,204,221', canvas:'153,102,255', drive:'68,136,255', call:'153,102,255' };
+
+        function drawShape(x, y, size, type, alpha, rot) {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(rot);
+            const c = colors[type] || '68,136,255';
+
+            // Glow
+            const g = ctx.createRadialGradient(0,0,0,0,0,size*2);
+            g.addColorStop(0, `rgba(${c},${alpha*1.5})`);
+            g.addColorStop(1, `rgba(${c},0)`);
+            ctx.beginPath(); ctx.arc(0,0,size*2,0,Math.PI*2); ctx.fillStyle=g; ctx.fill();
+
+            // Shape
+            ctx.beginPath();
+            const s = size;
+            if (type==='board') { const r=s*0.6; ctx.roundRect(-r,-r,r*2,r*2,s*0.15); }
+            else if (type==='chat') { ctx.arc(0,-s*0.1,s*0.5,0,Math.PI*2); }
+            else if (type==='doc') { const w=s*0.4,h=s*0.6; ctx.roundRect(-w,-h,w*2,h*2,s*0.08); }
+            else if (type==='canvas') { ctx.moveTo(0,-s*0.6); ctx.lineTo(s*0.6,0); ctx.lineTo(0,s*0.6); ctx.lineTo(-s*0.6,0); ctx.closePath(); }
+            else if (type==='drive') { const w=s*0.5,h=s*0.35; ctx.moveTo(-w,-h*0.6); ctx.lineTo(-w*0.3,-h*0.6); ctx.lineTo(-w*0.1,-h); ctx.lineTo(w,-h); ctx.lineTo(w,h); ctx.lineTo(-w,h); ctx.closePath(); }
+            else { ctx.arc(0,0,s*0.45,0,Math.PI*2); }
+            ctx.fillStyle=`rgba(${c},${alpha*0.6})`;
+            ctx.strokeStyle=`rgba(${c},${alpha*1.2})`;
+            ctx.lineWidth=1; ctx.fill(); ctx.stroke();
+            ctx.restore();
+        }
 
         function draw() {
-            const w = canvas.offsetWidth;
-            const h = canvas.offsetHeight;
-            ctx.clearRect(0, 0, w, h);
-            const time = Date.now() * 0.001;
+            const w = canvas.offsetWidth, h = canvas.offsetHeight;
+            ctx.clearRect(0,0,w,h);
+            const t = Date.now()*0.001;
 
-            for (const node of nodes) {
-                node.x = node.baseX + Math.sin(time * 0.3 + node.phase) * 0.008;
-                node.y = node.baseY + Math.cos(time * 0.25 + node.phase * 1.3) * 0.006;
+            for (const s of shapes) {
+                s.x = s.baseX + Math.sin(t*s.speed+s.phase)*s.driftX*3;
+                s.y = s.baseY + Math.cos(t*s.speed*0.8+s.phase*1.3)*s.driftY*3;
+                s.rotation += s.rotSpeed;
             }
 
-            for (const edge of edges) {
-                const n1 = nodes[edge.from];
-                const n2 = nodes[edge.to];
-                const x1 = n1.x * w, y1 = n1.y * h;
-                const x2 = n2.x * w, y2 = n2.y * h;
-                const alpha = 0.04 + 0.02 * Math.sin(time * 0.5 + edge.from);
-
-                ctx.beginPath();
-                ctx.moveTo(x1, y1);
-                ctx.lineTo(x2, y2);
-                ctx.strokeStyle = `rgba(50, 90, 160, ${alpha})`;
-                ctx.lineWidth = 0.8;
-                ctx.stroke();
-            }
-
-            for (let i = 0; i < nodes.length; i++) {
-                const node = nodes[i];
-                const px = node.x * w;
-                const py = node.y * h;
-                const pulse = 0.6 + 0.4 * Math.sin(time * node.pulseSpeed + node.phase);
-
-                const mdx = mouseX - node.x;
-                const mdy = mouseY - node.y;
-                const mouseDist = Math.sqrt(mdx * mdx + mdy * mdy);
-                const mouseGlow = Math.max(0, 1 - mouseDist / 0.15);
-
-                const isActive = time < node.activeUntil;
-                const activeGlow = isActive ? Math.max(0, (node.activeUntil - time) / 1.5) : 0;
-
-                const glowR = (node.size * 4) + mouseGlow * 10 + activeGlow * 12;
-                const glowAlpha = (0.12 + mouseGlow * 0.3 + activeGlow * 0.4) * pulse;
-
-                if (isActive) {
-                    const grad = ctx.createRadialGradient(px, py, 0, px, py, glowR);
-                    grad.addColorStop(0, `rgba(34, 200, 120, ${glowAlpha})`);
-                    grad.addColorStop(1, 'rgba(34, 200, 120, 0)');
-                    ctx.beginPath();
-                    ctx.arc(px, py, glowR, 0, Math.PI * 2);
-                    ctx.fillStyle = grad;
-                    ctx.fill();
-                } else {
-                    const grad = ctx.createRadialGradient(px, py, 0, px, py, glowR);
-                    grad.addColorStop(0, `rgba(80, 140, 240, ${glowAlpha})`);
-                    grad.addColorStop(1, 'rgba(80, 140, 240, 0)');
-                    ctx.beginPath();
-                    ctx.arc(px, py, glowR, 0, Math.PI * 2);
-                    ctx.fillStyle = grad;
-                    ctx.fill();
-                }
-
-                const coreR = node.size * 0.7 + mouseGlow * 1.5 + activeGlow * 2;
-                ctx.beginPath();
-                ctx.arc(px, py, coreR, 0, Math.PI * 2);
-                if (isActive) {
-                    ctx.fillStyle = `rgba(34, 220, 140, ${0.6 + activeGlow * 0.4})`;
-                } else {
-                    ctx.fillStyle = `rgba(140, 180, 240, ${0.25 + mouseGlow * 0.5})`;
-                }
-                ctx.fill();
-
-                ctx.beginPath();
-                ctx.arc(px, py, coreR * 0.4, 0, Math.PI * 2);
-                ctx.fillStyle = isActive
-                    ? `rgba(180, 255, 220, ${0.7 + activeGlow * 0.3})`
-                    : `rgba(200, 220, 255, ${0.3 + mouseGlow * 0.5})`;
-                ctx.fill();
-            }
-
-            for (let i = messages.length - 1; i >= 0; i--) {
-                const msg = messages[i];
-                msg.t += msg.speed;
-
-                if (msg.t >= 1) {
-                    nodes[msg.to].activeUntil = time + 1.5;
-
-                    if (msg.hopsLeft > 0) {
-                        const nextEdges = edges.filter(
-                            e => (e.from === msg.to || e.to === msg.to) &&
-                                 (e.from !== msg.from && e.to !== msg.from)
-                        );
-                        if (nextEdges.length > 0) {
-                            const nextEdge = nextEdges[Math.floor(Math.random() * nextEdges.length)];
-                            const nextTo = nextEdge.from === msg.to ? nextEdge.to : nextEdge.from;
-                            messages.push({
-                                from: msg.to,
-                                to: nextTo,
-                                t: 0,
-                                speed: msg.speed * (0.8 + Math.random() * 0.4),
-                                hopsLeft: msg.hopsLeft - 1,
-                            });
-                        }
+            // Connection lines
+            for (let i=0;i<shapes.length;i++) {
+                for (let j=i+1;j<shapes.length;j++) {
+                    const dx=shapes[j].x-shapes[i].x, dy=shapes[j].y-shapes[i].y;
+                    const d=Math.sqrt(dx*dx+dy*dy);
+                    if (d<0.2) {
+                        ctx.beginPath();
+                        ctx.moveTo(shapes[i].x*w,shapes[i].y*h);
+                        ctx.lineTo(shapes[j].x*w,shapes[j].y*h);
+                        ctx.strokeStyle=`rgba(68,136,255,${(1-d/0.2)*0.03})`;
+                        ctx.lineWidth=0.5; ctx.stroke();
                     }
-
-                    messages.splice(i, 1);
-                    continue;
                 }
+            }
 
-                const n1 = nodes[msg.from];
-                const n2 = nodes[msg.to];
-                const px = (n1.x + (n2.x - n1.x) * msg.t) * w;
-                const py = (n1.y + (n2.y - n1.y) * msg.t) * h;
-
-                const packetR = 5 + 3 * Math.sin(msg.t * Math.PI);
-                const grad = ctx.createRadialGradient(px, py, 0, px, py, packetR);
-                grad.addColorStop(0, 'rgba(34, 220, 140, 0.8)');
-                grad.addColorStop(0.5, 'rgba(34, 200, 120, 0.3)');
-                grad.addColorStop(1, 'rgba(34, 200, 120, 0)');
-                ctx.beginPath();
-                ctx.arc(px, py, packetR, 0, Math.PI * 2);
-                ctx.fillStyle = grad;
-                ctx.fill();
-
-                ctx.beginPath();
-                ctx.arc(px, py, 1.5, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(180, 255, 220, 0.9)';
-                ctx.fill();
-
-                const trailLen = 4;
-                for (let t = 1; t <= trailLen; t++) {
-                    const tt = Math.max(0, msg.t - t * 0.02);
-                    const tx = (n1.x + (n2.x - n1.x) * tt) * w;
-                    const ty = (n1.y + (n2.y - n1.y) * tt) * h;
-                    const ta = 0.3 * (1 - t / trailLen);
-                    ctx.beginPath();
-                    ctx.arc(tx, ty, 1.2, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(34, 220, 140, ${ta})`;
-                    ctx.fill();
-                }
+            for (const s of shapes) {
+                const mdx=mouseX-s.x, mdy=mouseY-s.y;
+                const md=Math.sqrt(mdx*mdx+mdy*mdy);
+                const mb=Math.max(0,1-md/0.15)*0.08;
+                drawShape(s.x*w, s.y*h, s.size, s.type, s.alpha+mb, s.rotation);
             }
 
             requestAnimationFrame(draw);
         }
         draw();
 
-        // ===== SCROLL ANIMATIONS =====
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
+        // Scroll animations
+        const obs = new IntersectionObserver(es => {
+            es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
         }, { threshold: 0.1 });
-
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
     </script>
 </body>
 </html>
